@@ -2,9 +2,8 @@
 
 import click
 import torch
-from torch import nn
-
 from matplotlib import pyplot as plt
+from torch import nn
 
 # from data import mnist
 from models.model import MyAwesomeModel
