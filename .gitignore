@@ -1,9 +1,9 @@
 # Added by Simon
-data/
-models/
-reports/
-.jupyter/
-.github/
+
+/models/
+/reports/
+/.jupyter/
+/.github/
 
 
 docs/site/
