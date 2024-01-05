@@ -38,7 +38,7 @@ def train(lr, outfile):
         shuffle=True,
     )
 
-    epochs = 10
+    epochs = 2
     train_losses = []
     for epoch in range(epochs):
         loss_accum = 0  # to keep track of the loss value
