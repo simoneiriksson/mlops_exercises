@@ -7,12 +7,17 @@ from torch import nn
 
 # from data import mnist
 from models.model import MyAwesomeModel
+import pdb
+import wandb
 
 
 @click.group()
 def cli():
     """Command line interface."""
     pass
+
+
+
 
 
 @click.command()
@@ -38,7 +43,22 @@ def train(lr, outfile):
         shuffle=True,
     )
 
-    epochs = 2
+    epochs = 10
+
+    wandb.init(
+      # Set the project where this run will be logged
+      project="mlops_exercises", 
+      # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
+      name=f"firs_trainer", 
+      # Track hyperparameters and run metadata
+      config={
+      "learning_rate": lr,
+      "dataset": "MNIST",
+      "epochs": epochs,
+      })
+    wandb.watch(model, log_freq=100)
+
+
     train_losses = []
     for epoch in range(epochs):
         loss_accum = 0  # to keep track of the loss value
@@ -52,7 +72,9 @@ def train(lr, outfile):
             loss.backward()
             optimizer.step()
             loss_accum += loss.item()
+            wandb.log({"batch-loss": loss.item()})
         train_losses.append(loss_accum / len(train_loader))
+        wandb.log({"epoch-loss": loss_accum / len(train_loader)})
         print(
             "Epoch: {}/{}.. ".format(epoch + 1, epochs),
             "Training Loss: {:.3f}.. ".format(loss_accum / len(train_loader)),
@@ -60,6 +82,7 @@ def train(lr, outfile):
     plt.plot(train_losses)
     plt.savefig("reports/figures/train_losses.png")
     torch.save(model, outfile)
+    wandb.finish()
 
 
 @click.command()
@@ -95,6 +118,9 @@ def evaluate(model_checkpoint):
         ## TODO: Implement the validation pass and print out the validation accuracy
         accuracy = num_equals / num_tot
         print(f"Accuracy: {accuracy.item():0.2%}")
+        wandb.log({"accuracy": accuracy.item()})
+    
+    wandb.finish()
 
 
 cli.add_command(train)
