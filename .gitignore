@@ -3,7 +3,7 @@
 /models/
 /reports/
 /.jupyter/
-/.github/
+#/.github/
 /wandb/
 
 docs/site/
