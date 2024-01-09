@@ -5,7 +5,7 @@ def mnist():
     """Return train and test dataloaders for MNIST."""
     # exchange with the corrupted mnist dataset
     train_images, train_labels = [], []
-    for i in range(1):
+    for i in range(10):
         train_images.append(torch.load("data/raw/train_images_{}.pt".format(i)))
         train_labels.append(torch.load("data/raw/train_target_{}.pt".format(i)))
     train_images = torch.cat(train_images)

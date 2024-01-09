@@ -1,3 +1,4 @@
 click==8.1.6
 matplotlib==3.5.3
 torch==2.1.0
+wandb==0.16.1

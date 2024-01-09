@@ -11,9 +11,10 @@ COPY pyproject.toml pyproject.toml
 COPY mlops_exercises/ mlops_exercises/
 COPY data/ data/
 COPY reports/ reports/
-
+COPY models/ models/
 
 WORKDIR /
-RUN pip install . --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
+#RUN pip install . --no-cache-dir
 
-ENTRYPOINT ["python", "-u", "mlops_exercises/train_model.py"]
+ENTRYPOINT ["python", "-u", "mlops_exercises/train_model.py", "train"]

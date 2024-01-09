@@ -9,15 +9,12 @@ from torch import nn
 from models.model import MyAwesomeModel
 import pdb
 import wandb
-
+import datetime
 
 @click.group()
 def cli():
     """Command line interface."""
     pass
-
-
-
 
 
 @click.command()
@@ -49,7 +46,7 @@ def train(lr, outfile):
       # Set the project where this run will be logged
       project="mlops_exercises", 
       # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
-      name=f"firs_trainer", 
+      name=f"first_trainer_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}", 
       # Track hyperparameters and run metadata
       config={
       "learning_rate": lr,
@@ -82,7 +79,7 @@ def train(lr, outfile):
     plt.plot(train_losses)
     plt.savefig("reports/figures/train_losses.png")
     torch.save(model, outfile)
-    wandb.finish()
+
 
 
 @click.command()
