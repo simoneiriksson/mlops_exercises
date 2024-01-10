@@ -1,7 +1,19 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/dtumlops-410721/dockerfiles/trainer.dockerfile', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/dtumlops-410721/dockerfiles/trainer.dockerfile']
+    # Step 1: Build the Docker image
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          [
+              "build",
+              "-f",
+              "./dockerfiles/trainer.dockerfile",
+              "-t",
+              "gcr.io/dtumlops-410721/trainer:latest",
+              ".",
+          ]
 
+    # Step 2: Push the Docker image to Artifact Registry
+    - name: "gcr.io/cloud-builders/docker"
+      args: ["push", "gcr.io/dtumlops-410721/trainer:latest"]
 
+images:
+    - "gcr.io/dtumlops-410721/trainer:latest"
