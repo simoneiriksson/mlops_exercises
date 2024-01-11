@@ -3,12 +3,19 @@ outs:
   path: data
   files:
   - relpath: .DS_Store
-    md5: b90b1542c38a49c416e46dfc5a0f1750
-    size: 6148
+    md5: 56519e66cf8ef9380d09c957c5cf3cc4
+    size: 8196
     cloud:
       remote_storage:
-        etag: 08f4b998e093d383031001
-        version_id: '1704901160082676'
+        etag: 08d29397e1edd583031001
+        version_id: '1704994040826322'
+  - relpath: .gitkeep
+    md5: d41d8cd98f00b204e9800998ecf8427e
+    size: 0
+    cloud:
+      remote_storage:
+        etag: 08b5d8ffe0edd583031001
+        version_id: '1704994040441909'
   - relpath: predictions.pt
     md5: 6bed48b05caa5baa99bf3bfc089d684e
     size: 201200
