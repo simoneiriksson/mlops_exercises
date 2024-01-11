@@ -1,9 +1,4 @@
 steps:
-    - name: Get data
-      run: dvc pull
-      env:
-        GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
-
     # Step 1: Build the Docker image
     - name: "gcr.io/cloud-builders/docker"
       args:
