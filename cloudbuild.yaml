@@ -5,7 +5,7 @@ steps:
           [
               "build",
               "-f",
-              "./dockerfiles/trainer.dockerfile",
+              "./dockerfiles/trainer_cloudbuild.dockerfile",
               "-t",
               "gcr.io/dtumlops-410721/trainer:latest",
               ".",
