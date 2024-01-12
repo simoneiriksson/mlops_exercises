@@ -1,7 +1,5 @@
 [core]
     remote = remote_storage
-['remote "storage"']
-    url = gdrive://1WzJpivBTqazsO7dcRllU6x4wwwhvu7av
 ['remote "remote_storage"']
     url = gs://my_mlops_data_bucjet/
     version_aware = true

@@ -1,5 +1,5 @@
 # Base image
-FROM --platform=linux python:3.10-slim
+FROM python:3.10-slim
 
 RUN apt update
 RUN apt install --no-install-recommends -y build-essential gcc
@@ -28,11 +28,19 @@ RUN mkdir reports/figures
 #COPY data.dvc data.dvc
 #RUN dvc pull
 
-COPY .dvc .dvc
+
+####
+##COPY .dvc .dvc
 #COPY .dvc/config .dvc/config
+#COPY data.dvc data.dvc
+##COPY *.dvc ./dvc-folder
+##RUN dvc init --no-scm
+#RUN dvc config core.no_scm true
+#RUN dvc pull --verbose
+
+RUN dvc init --no-scm
+COPY .dvc/config .dvc/config
 COPY data.dvc data.dvc
-#COPY *.dvc ./dvc-folder
-#RUN dvc init --no-scm
 RUN dvc config core.no_scm true
 RUN dvc pull
 
